@@ -1,0 +1,23 @@
+[api]
+  insecure = true
+  dashboard = true
+
+[providers]
+  [providers.docker]
+    exposedbydefault=false
+    watch = true
+    endpoint = "unix:///var/run/docker.sock"
+
+[entrypoints]
+  [entrypoints.web]
+    address=":80"
+  [entrypoints.websecure]
+    address=":443"
+    # [entryPoints.websecure.tls]
+
+[certificatesresolvers]
+  [certificatesresolvers.CertificateResolver0]
+    [certificatesresolvers.CertificateResolver0.acme]
+      email="actedu@raccoongang.com"
+      storage="/acme.json"
+      [certificatesResolvers.CertificateResolver1.acme.tlsChallenge]
